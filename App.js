@@ -9,7 +9,6 @@ import Routes from './src/Routes'
 
 export default class App extends React.Component {
   render() {
-    console.tron.log('aew')
     return (
       <Routes />
     );

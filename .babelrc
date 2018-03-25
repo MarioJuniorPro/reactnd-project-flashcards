@@ -4,5 +4,19 @@
     "development": {
       "plugins": ["transform-react-jsx-source"]
     }
-  }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "cwd": "babelrc",
+        "root": [
+          "./src"
+        ],
+        "extensions": [
+          ".js"
+        ]
+      }
+    ]
+  ]
 }

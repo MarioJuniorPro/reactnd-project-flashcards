@@ -1,44 +1,37 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet } from "react-native";
-import { general } from '../../styles'
+import { Text, View, FlatList } from "react-native";
+import { general } from "styles";
+import styles from "./styles";
 
-const decks = [
-  { title: 'Deck 1', cardsTotal: 20 },
-  { title: 'Deck 2', cardsTotal: 20 },
-  { title: 'Deck 3', cardsTotal: 9 },
-  { title: 'Deck 4', cardsTotal: 2 },
-  { title: 'Deck 5', cardsTotal: 30 }
-]
+import DeckItem from './components/DeckItem'
 
-const styles = StyleSheet.create({
-  deckList: {
-    flex: 1
-  },
-  deck: {
-    flex: 1
-  }
-})
+const decks = Array.from(new Array(20)).map((n, i) => ({ id: 5, title: `Deck ${i}`, cardsTotal: i * 20 }))
 
 class DeckList extends Component {
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
   }
 
   static navigationOptions = {
-    title: 'Home',
-  }
+    title: "Home"
+  };
 
-  render(){
+  renderListItem = ({ item }) => {
+    return <DeckItem item={item} />
+  }
+  
+  render() {
     return (
-      <View style={[general.container, styles.deckList]}>
-        {decks.map(deck => (
-          <View key={deck.title} style={[general.box, styles.deck]}>
-            <Text>{deck.title}</Text>
-          </View>
-        ))}
+      <View style={ general.container }>
+        <FlatList
+          data={decks}
+          keyExtractor={item => String(item.id)}
+          renderItem={this.renderListItem}
+          initialNumToRender={4}
+        />
       </View>
     );
   }
-};
+}
 
-export default DeckList
+export default DeckList;
