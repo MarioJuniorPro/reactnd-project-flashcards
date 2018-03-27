@@ -4,7 +4,7 @@ const { width, height } = Dimensions.get('window');
 
 export default {
   basePadding: 20,
-  baseMargin: 10,
+  baseMargin: 20,
   baseRadius: 3,
   baseFontSize: 14,
   screenWidth: width < height ? width : height,

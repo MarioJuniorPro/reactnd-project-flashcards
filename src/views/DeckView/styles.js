@@ -9,19 +9,13 @@ const styles = StyleSheet.create({
         marginTop: metrics.baseMargin,
         flex: 1,
         alignItems: "center",
-        justifyContent: "center",
-        shadowColor: 'black',
-        shadowOffset: {width: 2, height: 5},
-        shadowOpacity: .30,
-        shadowRadius: 5,
-        elevation: 2
+        justifyContent: "center"
     },
     title: {
         flex: 1,
         fontWeight: 'bold',
         fontSize: metrics.baseFontSize * 2.5,
-        marginBottom: metrics.baseMargin,
-        color: colors.primary
+        marginBottom: metrics.baseMargin
     },
     infoBox: {
         flex: 1,
