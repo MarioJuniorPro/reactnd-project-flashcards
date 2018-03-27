@@ -6,6 +6,8 @@ const styles = StyleSheet.create({
   btnContainer: {
     backgroundColor: colors.primary,
     padding: 10,
+    alignItems: 'center',
+    justifyContent: "center",
   },
   btnText: {
     color: colors.white,

@@ -12,14 +12,17 @@ class DeckView extends Component {
     super(props);
 
     this.state = {
-      deck: {}
+      deck: {
+        title: 'Deck 001',
+        cardsTotal: 30
+      }
     };
   }
 
   componentWillMount() {
-    const { deck } = this.props.navigation.state.params;
-    this.setState({ deck });
-    console.tron.log(deck);
+    // const { deck } = this.props.navigation.state.params;
+    // this.setState({ deck });
+    // console.tron.log(deck);
   }
 
   static navigationOptions = {
@@ -49,9 +52,12 @@ class DeckView extends Component {
                 />
                 <Text style={styles.infoText}>{deck.cardsTotal}</Text>
               </View>
-              <Button title="Add question" onPress={this.toAddQuestion} />
-              <Button title="Start quiz" onPress={this.startQuiz} />
-              <BtnDefault text="Start quiz" onPress={this.startQuiz} />
+              {/* <Button title="Add question" onPress={this.toAddQuestion} />
+              <Button title="Start quiz" onPress={this.startQuiz} /> */}
+              <View style={styles.controls}>
+                <BtnDefault text="Add question" onPress={this.toAddQuestion} />
+                <BtnDefault text="Start quiz" onPress={this.startQuiz} />
+              </View>
             </View>
           )}
         </Content>

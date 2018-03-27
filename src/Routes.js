@@ -18,7 +18,7 @@ const Routes = StackNavigator(
     }
   },
   {
-    initialRouteName: "Home",
+    initialRouteName: "DeckView",
     navigationOptions: {
       headerStyle: general.headerStyle,
       headerTintColor: general.headerTintColor,

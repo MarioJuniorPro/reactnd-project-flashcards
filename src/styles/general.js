@@ -13,9 +13,9 @@ export default {
     flex: 1,
     backgroundColor: colors.light,
   },
-  input: {
-    backgroundColor: colors.white,
-  },
+  // input: {
+  //   backgroundColor: colors.white,
+  // },
   box: {
     backgroundColor: colors.white,
     borderRadius: metrics.baseRadius,

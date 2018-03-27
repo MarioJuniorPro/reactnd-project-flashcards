@@ -32,6 +32,15 @@ const styles = StyleSheet.create({
     infoDeckIcon: {
         color: colors.dark,
         fontSize: metrics.baseFontSize * 2.2,
+    },
+    controls: {
+        margin: metrics.baseMargin * 2,
+        flex: 1,
+        justifyContent: "space-between",
+        height: 90,
+    },
+    controlsBtn: {
+        marginBottom: metrics.baseMargin * 2,
     }
  });
 

@@ -28,9 +28,9 @@ class DeckCreate extends Component {
 
   render() {
     return (
-      <Container style={general.container}>
-        <Content>
-          <Form>
+      <Container>
+        <View style={styles.container}>
+          <Form style={styles.form}>
             <Item last>
               <Input
                 placeholder="Deck name"
@@ -47,7 +47,7 @@ class DeckCreate extends Component {
               <Text style={general.buttonTextPrimary}>Create</Text>
             </Button>
           </Form>
-        </Content>
+        </View>
       </Container>
     );
   }
