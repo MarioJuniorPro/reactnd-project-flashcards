@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import { Container, Content, Form, Item, Input } from "native-base";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Text, View, Button } from "react-native";
+import { NavigationActions } from 'react-navigation';
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { general } from "styles";
 import styles from "./styles";
-
 import BtnDefault from 'components/BtnDefault'
 
 class DeckView extends Component {
@@ -20,21 +21,30 @@ class DeckView extends Component {
   }
 
   componentWillMount() {
-    // const { deck } = this.props.navigation.state.params;
-    // this.setState({ deck });
-    // console.tron.log(deck);
+    const { deck } = this.props.navigation.state.params;
+    this.setState({ deck });
   }
 
   static navigationOptions = {
     title: "Deck"
   };
 
-  toAddQuestion = () => {
-
+  toAddCard = () => {
+    const { navigation } = this.props;
+    navigation.navigate('CardCreate', {})
   }
 
   startQuiz = () => {
-
+    // const { navigation } = this.props;
+    // navigation.navigate('Quiz', {})
+    const resetAction = NavigationActions.reset({
+      index: 0,
+      actions: [
+        NavigationActions.navigate({ routeName: 'Quiz' }),
+      ],
+    });
+    this.props.navigation.dispatch(resetAction);
+    
   }
 
   render() {
@@ -46,17 +56,11 @@ class DeckView extends Component {
             <View style={styles.container}>
               <Text style={styles.title}>{deck.title}</Text>
               <View style={styles.infoBox}>
-                <MaterialCommunityIcons
-                  name="cards-outline"
-                  style={styles.infoDeckIcon}
-                />
-                <Text style={styles.infoText}>{deck.cardsTotal}</Text>
+                <Text style={styles.infoText}>Total cards: {deck.cardsTotal}</Text>
               </View>
-              {/* <Button title="Add question" onPress={this.toAddQuestion} />
-              <Button title="Start quiz" onPress={this.startQuiz} /> */}
               <View style={styles.controls}>
-                <BtnDefault text="Add question" onPress={this.toAddQuestion} />
-                <BtnDefault text="Start quiz" onPress={this.startQuiz} />
+                <BtnDefault text="Add Card" onPress={this.toAddCard} />
+                <BtnDefault text="Start Quiz" onPress={this.startQuiz} />
               </View>
             </View>
           )}
