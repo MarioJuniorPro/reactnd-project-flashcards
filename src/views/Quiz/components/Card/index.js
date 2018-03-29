@@ -1,10 +1,10 @@
 import React, { Component } from "react";
-import { Container, Content, Form, Item, Input } from "native-base";
+import { Fab, Container } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Text, View, Button } from "react-native";
 import { general } from "styles";
 import styles from "./styles";
-
+import { If, Unless } from "components/util";
 import BtnDefault from "components/BtnDefault";
 
 class Card extends Component {
@@ -12,27 +12,38 @@ class Card extends Component {
     super(props);
 
     this.state = {
-      deck: {
-        title: "Deck 001",
-        cardsTotal: 30
-      }
+      card: {},
+      revealAnwser: false
     };
   }
 
-  componentWillMount() {}
+  componentWillMount() {
+    // this.setState({ card: this.props.card || {} });
+  }
 
   static navigationOptions = {
     title: "Quiz",
-    gesturesEnabled: false,
+    gesturesEnabled: false
   };
 
   render() {
-    // const { deck } = this.state;
+    const { revealAnwser } = this.state;
     return (
+      <Container>
         <View style={styles.container}>
           <View style={[styles.box, styles.questionBox]}>
             <Text style={styles.boxLabel}>Question</Text>
             <Text style={styles.boxText}>Beibe beide do biruleibe baibe?</Text>
+            <Unless test={revealAnwser}>
+              <View style={styles.boxControls}>
+                <BtnDefault
+                  text="Reveal the anwser"
+                  onPress={() => {
+                    this.setState({ revealAnwser: !revealAnwser });
+                  }}
+                />
+              </View>
+            </Unless>
           </View>
 
           <View style={[styles.box, styles.anwserBox]}>
@@ -40,6 +51,25 @@ class Card extends Component {
             <Text style={styles.boxText}>gluglu!</Text>
           </View>
         </View>
+        <If test={revealAnwser}>
+          <View>
+            <Fab
+              position="bottomRight"
+              onPress={() => {}}
+              style={styles.btnCorrect}
+            >
+              <MaterialCommunityIcons name="thumb-up" size={32} />
+            </Fab>
+            <Fab
+              position="bottomLeft"
+              onPress={() => {}}
+              style={styles.btnIncorrect}
+            >
+              <MaterialCommunityIcons name="thumb-down" size={32} />
+            </Fab>
+          </View>
+        </If>
+      </Container>
     );
   }
 }
