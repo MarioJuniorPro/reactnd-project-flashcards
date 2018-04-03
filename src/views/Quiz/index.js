@@ -13,27 +13,38 @@ class Quiz extends Component {
     this.state = {
       deck: {
         title: "Deck 001",
-        cardsTotal: 30
+        cardsTotal: 30,
+        cards:[{
+          id: 0,
+          question: `React Native is generate hibryd apps?`,
+          anwser: `Nope`
+        },
+        {
+          id: 1,
+          question: `React, Angular or Vue?`,
+          anwser: `React!!!!`
+        },
+        {
+          id: 2,
+          question: `Udacity, Udemy or Lymda?`,
+          anwser: `Udacity!`
+        }]
       },
       currentCard: {
         id: 0,
-        question: `BLa bla`,
-        anwser: `ble vlwlwllw`
+        question: `First Card`,
+        anwser: `Yes`
       }
     };
   }
 
   componentWillMount() {
-    setInterval(() => {
-      const num = Math.random();
-      this.setState({
-        currentCard: {
-          id: num,
-          question: `BLa bla ${num}`,
-          anwser: `ble vlwlwllw  ${num}`
-        }
-      });
-    }, 16000);
+    // setInterval(() => {
+    //   const num = Math.floor(Math.random() * 3);
+    //   this.setState({
+    //     currentCard: this.state.deck.cards[num]
+    //   });
+    // }, 10000);
   }
 
   static navigationOptions = {
@@ -43,11 +54,12 @@ class Quiz extends Component {
 
   render() {
     const { currentCard } = this.state;
+    const { navigation } = this.props;
     return (
       <View style={styles.container}>
-        <Text>0/1</Text>
+        <Text style={styles.cardCount}>0/1</Text>
         <Card card={currentCard} key={currentCard.id}/>
-        {/* <Score /> */}
+        {/* <Score navigation={navigation}/> */}
       </View>
     );
   }

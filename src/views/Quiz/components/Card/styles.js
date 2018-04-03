@@ -4,8 +4,6 @@ import { general, metrics, colors } from "styles";
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: metrics.basePadding,
-    marginTop: metrics.baseMargin,
     flex: 1,
     alignItems: "center",
     justifyContent: "flex-start"

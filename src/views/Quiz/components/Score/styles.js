@@ -4,41 +4,56 @@ import { general, metrics, colors } from "styles";
 
 const styles = StyleSheet.create({
   container: {
-    marginHorizontal: metrics.basePadding,
-    marginTop: metrics.baseMargin,
     flex: 1,
     alignItems: "center",
-    justifyContent: "flex-start"
+    justifyContent: "center",
+    // paddingTop: metrics.basePadding * 5,
   },
-  box: {
-    alignItems: "center",
-    justifyContent: "flex-start",
-    marginBottom: metrics.baseMargin * 1,
-    backgroundColor: colors.lighter,
-    padding: metrics.basePadding / 2,
-    width: 280, 
+  finalScoreText: {
+    fontSize:36,
+    fontWeight: 'bold',
+    margin: metrics.baseMargin,
   },
-  boxText: {
-    color: colors.primary,
-    fontSize: metrics.baseFontSize * 1.6,
-    paddingHorizontal: 5,
-    fontWeight: "bold"
+  finalScore: {
+    fontSize:70,
+    fontWeight: 'bold',
+    color: colors.primary
   },
   boxControls: {
-    marginTop: metrics.baseMargin,
+    margin: metrics.baseMargin * 2,
+    
+    justifyContent: "space-between",
+    height: 90,
   },
-  boxLabel: {
-    color: colors.dark,
-    fontSize: metrics.baseFontSize,
-    paddingHorizontal: 5,
-    fontStyle: "italic"
-  },
-  btnCorrect: {
-    backgroundColor: "green"
-  },
-  btnIncorrect: {
-    backgroundColor: "red"
-  }
+  // box: {
+  //   alignItems: "center",
+  //   justifyContent: "flex-start",
+  //   marginBottom: metrics.baseMargin * 1,
+  //   backgroundColor: colors.lighter,
+  //   padding: metrics.basePadding / 2,
+  //   width: 280,
+  // },
+  // boxText: {
+  //   color: colors.primary,
+  //   fontSize: metrics.baseFontSize * 1.6,
+  //   paddingHorizontal: 5,
+  //   fontWeight: "bold"
+  // },
+  // boxControls: {
+  //   marginTop: metrics.baseMargin,
+  // },
+  // boxLabel: {
+  //   color: colors.dark,
+  //   fontSize: metrics.baseFontSize,
+  //   paddingHorizontal: 5,
+  //   fontStyle: "italic"
+  // },
+  // btnCorrect: {
+  //   backgroundColor: "green"
+  // },
+  // btnIncorrect: {
+  //   backgroundColor: "red"
+  // }
 });
 
 export default styles;

@@ -64,7 +64,7 @@ class Card extends Component {
                 <BtnDefault text="Reveal!" onPress={this.flip} />
               </View>
             </Unless>
-            <If test={flipped}>
+            {/* <If test={flipped}> */}
               <Animatable.View
                 ref={ref => (this.anwserBoxRef = ref)}
                 style={[styles.box, styles.anwserBox, {opacity: 0}]}
@@ -72,7 +72,7 @@ class Card extends Component {
                 <Text style={styles.boxLabel}>Anwser</Text>
                 <Text style={styles.boxText}>{anwser}</Text>
               </Animatable.View>
-            </If>
+            {/* </If> */}
           </View>
           <If test={flipped}>
             <View>

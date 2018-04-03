@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     // margin: metrics.basePadding
   },
   form: {
-    margin: metrics.basePadding,
     backgroundColor: colors.white
   },
   controls: {}

@@ -3,15 +3,17 @@ import { StyleSheet } from "react-native";
 import { general, metrics, colors } from "styles";
 
 const styles = StyleSheet.create({
-    container: {
-        ...general.box,
-        marginHorizontal: metrics.basePadding,
-        marginTop: metrics.baseMargin,
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center"
-    },
-    
- });
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center"
+  },
+  cardCount: {
+    padding: metrics.basePadding,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: colors.dark
+  }
+});
 
-export default styles
+export default styles;

@@ -9,7 +9,7 @@ import Quiz from "./views/Quiz";
 
 const Routes = StackNavigator(
   {
-    Home: {
+    Main: {
       screen: DeckList
     },
     DeckCreate: {
@@ -26,7 +26,7 @@ const Routes = StackNavigator(
     },
   },
   {
-    initialRouteName: "Quiz",
+    initialRouteName: "Main",
     navigationOptions: {
       headerStyle: general.headerStyle,
       headerTintColor: general.headerTintColor,

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { Entypo } from "@expo/vector-icons";
 import { Text, View } from "react-native";
+import { connect } from "react-redux";
+import { Entypo } from "@expo/vector-icons";
+
+import { navigateResetAction } from 'utils/navigation'
 import { general } from "styles";
 import styles from "./styles";
 import { Container, Button, Content, Form, Item, Input } from "native-base";
@@ -9,9 +12,9 @@ class DeckCreate extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      title: "",
       disableSubmit: true
-    }
+    };
   }
 
   static navigationOptions = {
@@ -19,12 +22,20 @@ class DeckCreate extends Component {
   };
 
   submit = () => {
-    console.tron.log(this.state.name);
+    const newDeck = {
+      title: this.state.title.trim(),
+      id: "fsdfsd",
+      cardsTotal: 0
+    };
+    this.props.addDeck(newDeck);
+    this.setState({ disableSubmit: true });
+
+    this.props.navigation.dispatch(navigateResetAction('Main'));
   };
 
   disableSubmit = () => {
-    this.setState({disableSubmit: (this.state.name.length < 1)})
-  }
+    this.setState({ disableSubmit: this.state.title.length < 1 });
+  };
 
   render() {
     return (
@@ -33,17 +44,22 @@ class DeckCreate extends Component {
           <Form style={styles.form}>
             <Item last>
               <Input
-                placeholder="Deck name"
+                placeholder="Deck title"
                 autoFocus={true}
                 onChange={this.disableSubmit}
-                onChangeText={(text) => this.setState({name:text})}
+                onChangeText={title => this.setState({ title: title })}
                 onSubmitEditing={this.submit}
-                value={this.state.name}
+                value={this.state.title}
                 style={general.input}
               />
             </Item>
 
-            <Button full style={general.buttonPrimary} onPress={this.submit} disabled={this.state.disableSubmit}>
+            <Button
+              full
+              style={general.buttonPrimary}
+              onPress={this.submit}
+              disabled={this.state.disableSubmit}
+            >
               <Text style={general.buttonTextPrimary}>Create</Text>
             </Button>
           </Form>
@@ -53,4 +69,10 @@ class DeckCreate extends Component {
   }
 }
 
-export default DeckCreate;
+const mapStateToProps = state => ({});
+
+const mapDispatchToProps = ({ decks: { addDeck } }) => ({
+  addDeck
+});
+
+export default connect(null, mapDispatchToProps)(DeckCreate);

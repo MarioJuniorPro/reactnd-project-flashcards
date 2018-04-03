@@ -1,16 +1,11 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
 import { Entypo } from "@expo/vector-icons";
 import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { general } from "styles";
 import { Container, Header, Fab, Button, Icon } from "native-base";
 import styles from "./styles";
 import DeckItem from "./components/DeckItem";
-
-const decks = Array.from(new Array(20)).map((n, i) => ({
-  id: i,
-  title: `Deck ${i}`,
-  cardsTotal: i * 20
-}));
 
 class DeckList extends Component {
   constructor(props) {
@@ -22,7 +17,6 @@ class DeckList extends Component {
   };
 
   toDeckCreate = () => {
-    console.tron.log('nav')
     this.props.navigation.navigate({ routeName: 'DeckCreate' })
   }
 
@@ -35,14 +29,15 @@ class DeckList extends Component {
   };
 
   render() {
+    const { decks } = this.props
     return (
       <Container>
-        <View style={general.container}>
+        <View style={styles.container}>
           <FlatList
             data={decks}
             keyExtractor={item => String(item.id)}
             renderItem={this.renderListItem}
-            initialNumToRender={4}
+            initialNumToRender={0}
           />
         </View>
         <Fab
@@ -57,4 +52,8 @@ class DeckList extends Component {
   }
 }
 
-export default DeckList;
+const mapStateToProps = (state) => ({
+  decks: state.decks.list
+})
+
+export default connect(mapStateToProps)(DeckList);
