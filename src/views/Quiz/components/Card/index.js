@@ -1,11 +1,12 @@
 import React, { Component } from "react";
+import { Text, View, Animated } from "react-native";
 import { Fab, Container } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { Text, View, Button } from "react-native";
 import { general } from "styles";
 import styles from "./styles";
 import { If, Unless } from "components/util";
 import BtnDefault from "components/BtnDefault";
+import * as Animatable from "react-native-animatable";
 
 class Card extends Component {
   constructor(props) {
@@ -13,62 +14,85 @@ class Card extends Component {
 
     this.state = {
       card: {},
-      revealAnwser: false
+      flipped: false,
+      fadeAnim: new Animated.Value(0)
     };
   }
 
   componentWillMount() {
-    // this.setState({ card: this.props.card || {} });
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 1,
+      duration: 1000
+    }).start();
   }
+
+  componentWillUnmount() {
+    Animated.timing(this.state.fadeAnim, {
+      toValue: 0,
+      duration: 500
+    }).start();
+  }
+
+  flip = () => {
+    this.setState({ flipped: true });
+    setTimeout(() => {
+      this.anwserBoxRef.flipInY(1000);
+    }, 0);
+  };
 
   static navigationOptions = {
     title: "Quiz",
     gesturesEnabled: false
   };
 
+  __nextCard = () => {};
+
   render() {
-    const { revealAnwser } = this.state;
+    const { card: { question, anwser } } = this.props;
+    const { flipped, fadeAnim } = this.state;
     return (
       <Container>
-        <View style={styles.container}>
-          <View style={[styles.box, styles.questionBox]}>
-            <Text style={styles.boxLabel}>Question</Text>
-            <Text style={styles.boxText}>Beibe beide do biruleibe baibe?</Text>
-            <Unless test={revealAnwser}>
+        <Animated.View style={{ opacity: fadeAnim }}>
+          <View style={styles.container}>
+            <Unless test={flipped}>
+              <View style={[styles.box, styles.questionBox]}>
+                <Text style={styles.boxLabel}>Question</Text>
+                <Text style={styles.boxText}>{question}</Text>
+              </View>
+
               <View style={styles.boxControls}>
-                <BtnDefault
-                  text="Reveal the anwser"
-                  onPress={() => {
-                    this.setState({ revealAnwser: !revealAnwser });
-                  }}
-                />
+                <BtnDefault text="Reveal!" onPress={this.flip} />
               </View>
             </Unless>
+            <If test={flipped}>
+              <Animatable.View
+                ref={ref => (this.anwserBoxRef = ref)}
+                style={[styles.box, styles.anwserBox, {opacity: 0}]}
+              >
+                <Text style={styles.boxLabel}>Anwser</Text>
+                <Text style={styles.boxText}>{anwser}</Text>
+              </Animatable.View>
+            </If>
           </View>
-
-          <View style={[styles.box, styles.anwserBox]}>
-            <Text style={styles.boxLabel}>Anwser</Text>
-            <Text style={styles.boxText}>gluglu!</Text>
-          </View>
-        </View>
-        <If test={revealAnwser}>
-          <View>
-            <Fab
-              position="bottomRight"
-              onPress={() => {}}
-              style={styles.btnCorrect}
-            >
-              <MaterialCommunityIcons name="thumb-up" size={32} />
-            </Fab>
-            <Fab
-              position="bottomLeft"
-              onPress={() => {}}
-              style={styles.btnIncorrect}
-            >
-              <MaterialCommunityIcons name="thumb-down" size={32} />
-            </Fab>
-          </View>
-        </If>
+          <If test={flipped}>
+            <View>
+              <Fab
+                position="bottomRight"
+                onPress={this.__nextCard}
+                style={styles.btnCorrect}
+              >
+                <MaterialCommunityIcons name="thumb-up" size={32} />
+              </Fab>
+              <Fab
+                position="bottomLeft"
+                onPress={this.__nextCard}
+                style={styles.btnIncorrect}
+              >
+                <MaterialCommunityIcons name="thumb-down" size={32} />
+              </Fab>
+            </View>
+          </If>
+        </Animated.View>
       </Container>
     );
   }

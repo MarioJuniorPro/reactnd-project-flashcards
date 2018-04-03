@@ -12,15 +12,14 @@ const styles = StyleSheet.create({
   },
   box: {
     alignItems: "center",
-    justifyContent: "center",
+    justifyContent: "flex-start",
     marginBottom: metrics.baseMargin * 1,
-    backgroundColor: colors.primary,
-    padding: metrics.basePadding,
-    width: 300, 
-    height: 250
+    backgroundColor: colors.lighter,
+    padding: metrics.basePadding / 2,
+    width: 280, 
   },
   boxText: {
-    color: colors.white,
+    color: colors.primary,
     fontSize: metrics.baseFontSize * 1.6,
     paddingHorizontal: 5,
     fontWeight: "bold"
@@ -29,8 +28,7 @@ const styles = StyleSheet.create({
     marginTop: metrics.baseMargin,
   },
   boxLabel: {
-    justifyContent: "flex-start",
-    color: colors.lighter,
+    color: colors.dark,
     fontSize: metrics.baseFontSize,
     paddingHorizontal: 5,
     fontStyle: "italic"

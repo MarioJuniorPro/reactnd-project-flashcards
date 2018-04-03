@@ -23,7 +23,7 @@ const Routes = StackNavigator(
     },
     Quiz: {
       screen: Quiz
-    }
+    },
   },
   {
     initialRouteName: "Quiz",
