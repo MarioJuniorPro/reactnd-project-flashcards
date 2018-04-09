@@ -11,7 +11,12 @@ class DeckList extends Component {
   constructor(props) {
     super(props);
   }
-
+  
+  // componentDidMount(){
+  //   setInterval(() => {
+  //     this.props.selectDeck({})
+  //   },300)
+  // }
   static navigationOptions = {
     title: "Home"
   };
@@ -21,7 +26,8 @@ class DeckList extends Component {
   }
 
   toDeck = (deck) => {
-    this.props.navigation.navigate({ routeName: 'DeckView', params: { deck }})
+    this.props.selectDeck(deck)
+    this.props.navigation.navigate({ routeName: 'DeckView'})
   }
 
   renderListItem = ({ item }) => {
@@ -37,7 +43,7 @@ class DeckList extends Component {
             data={decks}
             keyExtractor={item => String(item.id)}
             renderItem={this.renderListItem}
-            initialNumToRender={0}
+            initialNumToRender={1}
           />
         </View>
         <Fab
@@ -56,4 +62,9 @@ const mapStateToProps = (state) => ({
   decks: state.decks.list
 })
 
-export default connect(mapStateToProps)(DeckList);
+const mapDispatchToProps = ({decks: { selectDeck }}) => ({
+  selectDeck
+})
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(DeckList);

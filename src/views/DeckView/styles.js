@@ -35,12 +35,9 @@ const styles = StyleSheet.create({
     },
     controls: {
         margin: metrics.baseMargin * 2,
-        flex: 1,
-        justifyContent: "space-between",
-        height: 90,
     },
-    controlsBtn: {
-        marginBottom: metrics.baseMargin * 2,
+    btn: {
+        marginBottom: metrics.baseMargin / 2
     }
  });
 
