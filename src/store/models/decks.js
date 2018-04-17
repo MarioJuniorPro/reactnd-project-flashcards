@@ -1,5 +1,6 @@
 export const decks = {
   state: {
+    list: [],
     list: Array.from(new Array(2)).map((n, i) => ({
       id: String(i),
       title: `Deck ${i}`,
@@ -8,6 +9,9 @@ export const decks = {
     selected: null
   },
   reducers: {
+    setDecks: (state, payload) => {
+      return { ...state, list: payload} 
+    },
     addDeck: (state, payload) => {
       const newList = [payload, ...state.list];
       return { ...state, list: newList };

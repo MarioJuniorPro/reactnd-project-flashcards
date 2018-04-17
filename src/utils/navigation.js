@@ -7,3 +7,7 @@ export const navigateResetAction = routeName => {
   });
   return resetAction;
 };
+
+export default {
+  navigateResetAction
+}

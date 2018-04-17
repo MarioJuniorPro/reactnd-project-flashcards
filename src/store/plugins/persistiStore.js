@@ -1,9 +1,16 @@
 import throttle from 'lodash/throttle'
+import storage from 'utils/storage'
+
+const stateStorage = storage('@Udacity:flashcards:state')
 
 const persistStore = () => {
     const bottleNeck = throttle((state) => {
-        // TODO: persist
-        console.tron.log(state)
+        console.tron.log('State Persisted')
+        // console.tron.log(state)
+        stateStorage.setObject(state)
+        .catch(err => {
+            console.tron.log(err)
+          })
     }, 2000)
     return {
 
