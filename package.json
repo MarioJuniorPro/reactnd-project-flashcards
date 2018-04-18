@@ -23,6 +23,7 @@
   "dependencies": {
     "@expo/vector-icons": "^6.3.1",
     "@rematch/core": "^0.6.0",
+    "@rematch/select": "^0.3.0",
     "@rematch/subscriptions": "^0.2.2",
     "expo": "^25.0.0",
     "lodash": "^4.17.5",

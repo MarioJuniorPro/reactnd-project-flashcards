@@ -6,6 +6,7 @@ import { Text, View, Button, Alert } from "react-native";
 import { NavigationActions } from "react-navigation";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { navigateResetAction } from "utils/navigation";
+import { select } from '@rematch/select'
 
 import { general } from "styles";
 import styles from "./styles";
@@ -14,13 +15,6 @@ import BtnDefault from "components/BtnDefault";
 class DeckView extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      // deck: {
-      //   title: "Deck 001",
-      //   cardsTotal: 30
-      // }
-    };
   }
 
   static propTypes = {
@@ -41,8 +35,8 @@ class DeckView extends Component {
   };
 
   toAddCard = () => {
-    const { navigation } = this.props;
-    navigation.navigate("CardCreate", {});
+    const { navigation, deck } = this.props;
+    navigation.navigate("CardCreate", { deckId: deck.id});
   };
 
   startQuiz = () => {
@@ -105,7 +99,7 @@ class DeckView extends Component {
 }
 
 const mapStateToProps = state => ({
-  deck: state.decks.selected
+  deck: select.decks.selectedDeck(state)
 });
 
 const mapDispatchToProps = ({ decks: { removeDeck } }) => ({

@@ -17,23 +17,23 @@ class Quiz extends Component {
         cards:[{
           id: 0,
           question: `React Native is generate hibryd apps?`,
-          anwser: `Nope`
+          answer: `Nope`
         },
         {
           id: 1,
           question: `React, Angular or Vue?`,
-          anwser: `React!!!!`
+          answer: `React!!!!`
         },
         {
           id: 2,
           question: `Udacity, Udemy or Lymda?`,
-          anwser: `Udacity!`
+          answer: `Udacity!`
         }]
       },
       currentCard: {
         id: 0,
         question: `First Card`,
-        anwser: `Yes`
+        answer: `Yes`
       }
     };
   }

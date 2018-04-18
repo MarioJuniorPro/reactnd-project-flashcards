@@ -4,6 +4,7 @@ import { Entypo } from "@expo/vector-icons";
 import { Text, View, FlatList, TouchableOpacity } from "react-native";
 import { general } from "styles";
 import { Container, Header, Fab, Button, Icon } from "native-base";
+import { select } from '@rematch/select'
 import styles from "./styles";
 import DeckItem from "./components/DeckItem";
 
@@ -12,11 +13,6 @@ class DeckList extends Component {
     super(props);
   }
   
-  // componentDidMount(){
-  //   setInterval(() => {
-  //     this.props.selectDeck({})
-  //   },300)
-  // }
   static navigationOptions = {
     title: "Home"
   };
@@ -26,7 +22,7 @@ class DeckList extends Component {
   }
 
   toDeck = (deck) => {
-    this.props.selectDeck(deck)
+    this.props.selectDeck(deck.id)
     this.props.navigation.navigate({ routeName: 'DeckView'})
   }
 
@@ -59,7 +55,7 @@ class DeckList extends Component {
 }
 
 const mapStateToProps = (state) => ({
-  decks: state.decks.list
+  decks: select.decks.deckList(state)
 })
 
 const mapDispatchToProps = ({decks: { selectDeck }}) => ({

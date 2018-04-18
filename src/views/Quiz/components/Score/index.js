@@ -14,7 +14,7 @@ class Score extends Component {
 
     this.state = {
       card: {},
-      revealAnwser: false,
+      revealAnswer: false,
       fadeAnim: new Animated.Value(0)
     };
   }

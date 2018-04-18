@@ -36,7 +36,7 @@ class Card extends Component {
   flip = () => {
     this.setState({ flipped: true });
     setTimeout(() => {
-      this.anwserBoxRef.flipInY(1000);
+      this.answerBoxRef.flipInY(1000);
     }, 0);
   };
 
@@ -48,7 +48,7 @@ class Card extends Component {
   __nextCard = () => {};
 
   render() {
-    const { card: { question, anwser } } = this.props;
+    const { card: { question, answer } } = this.props;
     const { flipped, fadeAnim } = this.state;
     return (
       <Container>
@@ -66,11 +66,11 @@ class Card extends Component {
             </Unless>
             {/* <If test={flipped}> */}
               <Animatable.View
-                ref={ref => (this.anwserBoxRef = ref)}
-                style={[styles.box, styles.anwserBox, {opacity: 0}]}
+                ref={ref => (this.answerBoxRef = ref)}
+                style={[styles.box, styles.answerBox, {opacity: 0}]}
               >
-                <Text style={styles.boxLabel}>Anwser</Text>
-                <Text style={styles.boxText}>{anwser}</Text>
+                <Text style={styles.boxLabel}>Answer</Text>
+                <Text style={styles.boxText}>{answer}</Text>
               </Animatable.View>
             {/* </If> */}
           </View>

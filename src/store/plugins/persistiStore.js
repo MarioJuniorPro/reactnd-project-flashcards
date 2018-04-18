@@ -6,7 +6,6 @@ const stateStorage = storage('@Udacity:flashcards:state')
 const persistStore = () => {
     const bottleNeck = throttle((state) => {
         console.tron.log('State Persisted')
-        // console.tron.log(state)
         stateStorage.setObject(state)
         .catch(err => {
             console.tron.log(err)
@@ -16,9 +15,9 @@ const persistStore = () => {
 
         init: (expose) => ({
             middleware: store => next => action => {
-                // do something here
+                next(action) // call next before to get updated state
                 bottleNeck(store.getState())
-                return next(action)
+                return 
             }
         })
     }

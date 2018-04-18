@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
+import { dispatch } from '@rematch/core'
 import { Entypo } from "@expo/vector-icons";
 import { Text, View } from "react-native";
 import { general } from "styles";
@@ -10,7 +12,7 @@ class CardCreate extends Component {
     super(props);
     this.state = {
       question: '',
-      awnser: '',
+      answer: '',
       disableSubmit: true
     }
   }
@@ -20,12 +22,23 @@ class CardCreate extends Component {
   };
 
   submit = () => {
-    console.tron.log(this.state.name);
-  };
+    const { deckId } = this.props.navigation.state.params
+    const {question, answer} = this.state
 
+    const newCard = {
+      id: "1",
+      question: question.trim(),
+      answer: answer.trim(),
+      deckId
+    }
+
+    this.props.addCard(newCard)
+    this.props.navigation.goBack()
+  };
+  
   disableSubmit = () => {
-    const {question, awnser} = this.state
-    this.setState({disableSubmit: (question.length < 1 || awnser.length < 1)})
+    const {question, answer} = this.state
+    this.setState({disableSubmit: (question.length < 1 || answer.length < 1)})
   }
 
   render() {
@@ -45,12 +58,11 @@ class CardCreate extends Component {
             </Item>
             <Item last>
               <Input
-                placeholder="Awnser"
-                autoFocus={true}
+                placeholder="Answer"
                 onChange={this.disableSubmit}
-                onChangeText={(text) => this.setState({awnser:text})}
+                onChangeText={(text) => this.setState({answer:text})}
                 onSubmitEditing={this.submit}
-                value={this.state.awnser}
+                value={this.state.answer}
                 
               />
             </Item>
@@ -66,4 +78,9 @@ class CardCreate extends Component {
   }
 }
 
-export default CardCreate;
+const mapDispatch  = ({ decks: {addCard}}) => ({
+  addCard
+})
+
+
+export default connect(null, mapDispatch)(CardCreate);
