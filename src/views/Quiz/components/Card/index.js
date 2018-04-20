@@ -1,8 +1,15 @@
 import React, { Component } from "react";
-import { Text, View, Animated } from "react-native";
-import { Fab, Container } from "native-base";
+import PropTypes from "prop-types";
+import {
+  Text,
+  View,
+  Animated,
+  TouchableOpacity,
+  ScrollView
+} from "react-native";
+import { Container } from 'native-base'
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { general } from "styles";
+import { general, colors } from "styles";
 import styles from "./styles";
 import { If, Unless } from "components/util";
 import BtnDefault from "components/BtnDefault";
@@ -18,6 +25,10 @@ class Card extends Component {
       fadeAnim: new Animated.Value(0)
     };
   }
+
+  static propTypes = {
+    answer: PropTypes.func
+  };
 
   componentWillMount() {
     Animated.timing(this.state.fadeAnim, {
@@ -45,10 +56,18 @@ class Card extends Component {
     gesturesEnabled: false
   };
 
-  __nextCard = () => {};
+  answerCorrect = () => {
+    this.props.answer(true);
+  };
+
+  answerIncorrect = () => {
+    this.props.answer(false);
+  };
 
   render() {
-    const { card: { question, answer } } = this.props;
+    const {
+      card: { question, answer }
+    } = this.props;
     const { flipped, fadeAnim } = this.state;
     return (
       <Container>
@@ -64,32 +83,38 @@ class Card extends Component {
                 <BtnDefault text="Reveal!" onPress={this.flip} />
               </View>
             </Unless>
-            {/* <If test={flipped}> */}
-              <Animatable.View
-                ref={ref => (this.answerBoxRef = ref)}
-                style={[styles.box, styles.answerBox, {opacity: 0}]}
-              >
+            <Animatable.View
+              ref={ref => (this.answerBoxRef = ref)}
+              style={[styles.box, styles.answerBox, { opacity: 0 }]}
+            >
+              <View style={[styles.box, styles.answerBox]}>
                 <Text style={styles.boxLabel}>Answer</Text>
                 <Text style={styles.boxText}>{answer}</Text>
-              </Animatable.View>
-            {/* </If> */}
+              </View>
+            </Animatable.View>
           </View>
           <If test={flipped}>
-            <View>
-              <Fab
-                position="bottomRight"
-                onPress={this.__nextCard}
-                style={styles.btnCorrect}
-              >
-                <MaterialCommunityIcons name="thumb-up" size={32} />
-              </Fab>
-              <Fab
-                position="bottomLeft"
-                onPress={this.__nextCard}
-                style={styles.btnIncorrect}
-              >
-                <MaterialCommunityIcons name="thumb-down" size={32} />
-              </Fab>
+            <View style={styles.controls}>
+              <TouchableOpacity onPress={this.answerIncorrect}>
+                <View style={[styles.btnCircle, styles.incorrectContainer]}>
+                  <MaterialCommunityIcons
+                    name="thumb-down"
+                    size={32}
+                    color={colors.white}
+                  />
+                  <Text style={styles.incorrectText}>Incorrect</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.answerCorrect}>
+                <View style={[styles.btnCircle, styles.correctContainer]}>
+                  <MaterialCommunityIcons
+                    name="thumb-up"
+                    size={32}
+                    color={colors.white}
+                  />
+                  <Text style={styles.correctText}>Correct</Text>
+                </View>
+              </TouchableOpacity>
             </View>
           </If>
         </Animated.View>

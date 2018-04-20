@@ -6,12 +6,12 @@ import { general } from "styles";
 import styles from "./styles";
 
 const BtnDefault = props => {
-  const { btnStyles, textStyles } = props;
+  const { btnStyles, textStyles, disabled } = props;
   return (
     <TouchableOpacity
-      onPress={props.onPress}
       {...props}
-      style={[styles.btnContainer, btnStyles]}
+      onPress={props.onPress}
+      style={[disabled ? styles.disabled : styles.btnContainer,btnStyles]}
     >
       <Text style={[styles.btnText, textStyles]}>{props.text}</Text>
     </TouchableOpacity>

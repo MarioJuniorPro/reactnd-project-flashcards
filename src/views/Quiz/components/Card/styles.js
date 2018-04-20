@@ -11,33 +11,58 @@ const styles = StyleSheet.create({
   box: {
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: metrics.baseMargin * 1,
+    // marginBottom: metrics.baseMargin,
     backgroundColor: colors.primary,
-    padding: metrics.basePadding,
-    width: 300, 
-    height: 250
+    padding: metrics.basePadding * 0.8,
+    width: 350, 
+    height: 280
+  },
+  answerBox:{
+    // padding: metrics.basePadding * 0.3,
   },
   boxText: {
     color: colors.white,
-    fontSize: metrics.baseFontSize * 1.6,
+    fontSize: metrics.baseFontSize * 1.3,
     paddingHorizontal: 5,
-    fontWeight: "bold"
+    marginBottom: metrics.baseMargin,
   },
   boxControls: {
     marginTop: metrics.baseMargin,
   },
   boxLabel: {
-    justifyContent: "flex-start",
+    justifyContent: "center",
     color: colors.lighter,
-    fontSize: metrics.baseFontSize,
+    fontSize: metrics.baseFontSize * 1.5,
     paddingHorizontal: 5,
+    fontWeight: "bold",
     fontStyle: "italic"
+
   },
-  btnCorrect: {
-    backgroundColor: "green"
+  controls: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: metrics.baseMargin * 2,
+    paddingHorizontal: metrics.basePadding *2 
   },
-  btnIncorrect: {
-    backgroundColor: "red"
+  btnCircle: {
+    borderRadius: 40,
+    height: 80,
+    width: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 5,
+  },
+  incorrectContainer: {
+    backgroundColor: "#F44336",
+  },
+  correctContainer:{
+    backgroundColor: "#4CAF50"
+  },
+  incorrectText:{
+    color: colors.white
+  },
+  correctText:{
+    color: colors.white
   }
 });
 

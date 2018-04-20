@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
-import { View, Text } from "react-native";
 import PropTypes from "prop-types";
+import { View, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import { general, colors } from "styles";
@@ -11,7 +11,10 @@ class DeckItem extends PureComponent {
     super(props);
   }
   static propTypes = {
-    // TODO  prop: PropTypes
+    item: PropTypes.shape({
+      title: PropTypes.string,
+      cardsTotal: PropTypes.number
+    })
   };
 
   static defaultProps = {

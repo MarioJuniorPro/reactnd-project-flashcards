@@ -12,6 +12,12 @@ const styles = StyleSheet.create({
   btnText: {
     color: colors.white,
     fontWeight: 'bold',
+  },
+  disabled: {
+    backgroundColor: colors.regular,
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: "center",
   }
 });
 

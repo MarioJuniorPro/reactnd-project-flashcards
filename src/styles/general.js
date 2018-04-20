@@ -9,13 +9,13 @@ export default {
   headerTitleStyle: {
     fontWeight: 'bold',
   },
+  headerRight: {
+    marginRight: metrics.baseMargin
+  },
   container: {
     flex: 1,
     backgroundColor: colors.light,
   },
-  // input: {
-  //   backgroundColor: colors.white,
-  // },
   box: {
     backgroundColor: colors.white,
     borderRadius: metrics.baseRadius,

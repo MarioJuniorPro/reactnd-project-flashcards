@@ -21,14 +21,10 @@ class DeckView extends Component {
     deck: PropTypes.shape({
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
-      cardsTotal: PropTypes.number
+      cardsTotal: PropTypes.number,
+      cards: PropTypes.array
     })
   };
-
-  componentWillMount() {
-    // const { deck } = this.props.navigation.state.params;
-    // this.setState({ deck });
-  }
 
   static navigationOptions = {
     title: "Deck"
@@ -40,6 +36,8 @@ class DeckView extends Component {
   };
 
   startQuiz = () => {
+    const { deck } = this.props
+    this.props.startQuiz({deck})
     this.props.navigation.dispatch(navigateResetAction("Quiz"));
   };
 
@@ -78,6 +76,7 @@ class DeckView extends Component {
                   text="Start Quiz"
                   onPress={this.startQuiz}
                   btnStyles={styles.btn}
+                  disabled={deck.cardsTotal === 0}
                 />
                 <BtnDefault
                   text="Add Card"
@@ -102,8 +101,9 @@ const mapStateToProps = state => ({
   deck: select.decks.selectedDeck(state)
 });
 
-const mapDispatchToProps = ({ decks: { removeDeck } }) => ({
-  removeDeck
+const mapDispatchToProps = ({ decks, quiz }) => ({
+  removeDeck: decks.removeDeck,
+  startQuiz: quiz.start
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckView);

@@ -4,7 +4,7 @@ import { general, metrics, colors } from "styles";
 
 const styles = StyleSheet.create({
   container: {
-    paddingBottom: metrics.basePadding
+    paddingBottom: metrics.basePadding,
   },
   addDeckFAB: {
     backgroundColor: colors.primary

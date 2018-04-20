@@ -15,8 +15,18 @@ const stateStorage = storage("@Udacity:flashcards:state");
 stateStorage
   .getObject()
   .then(state => {
-    store.dispatch.decks.setDecks(state.decks.table);
+    const decks = require("utils/seed").decks;
+
+    if (state && state.decks) {
+      if (Object.keys(state.decks.table).length === 0) {
+        store.dispatch.decks.setDecks(decks);
+        return;
+      }
+      store.dispatch.decks.setDecks(state.decks.table);
+    } else {
+      store.dispatch.decks.setDecks(decks);
+    }
   })
   .catch(err => {
-    console.tron.log(err);
+    console.log(err);
   });

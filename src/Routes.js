@@ -6,6 +6,7 @@ import DeckCreate from "./views/DeckCreate";
 import DeckView from "./views/DeckView";
 import CardCreate from "./views/DeckView/components/CardCreate";
 import Quiz from "./views/Quiz";
+import Info from 'views/Info'
 
 const Routes = StackNavigator(
   {
@@ -24,6 +25,9 @@ const Routes = StackNavigator(
     Quiz: {
       screen: Quiz
     },
+    Info: {
+      screen: Info
+    }
   },
   {
     initialRouteName: "Main",

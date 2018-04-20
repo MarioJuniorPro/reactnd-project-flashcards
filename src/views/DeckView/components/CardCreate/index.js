@@ -1,8 +1,10 @@
 import React, { Component } from "react";
+import uuid from 'uuid/v4'
 import { connect } from 'react-redux'
 import { dispatch } from '@rematch/core'
 import { Entypo } from "@expo/vector-icons";
 import { Text, View } from "react-native";
+
 import { general } from "styles";
 import styles from "./styles";
 import { Container, Button, Content, Form, Item, Input } from "native-base";
@@ -26,7 +28,7 @@ class CardCreate extends Component {
     const {question, answer} = this.state
 
     const newCard = {
-      id: "1",
+      id: uuid(),
       question: question.trim(),
       answer: answer.trim(),
       deckId
@@ -52,8 +54,9 @@ class CardCreate extends Component {
                 autoFocus={true}
                 onChange={this.disableSubmit}
                 onChangeText={(text) => this.setState({question:text})}
-                onSubmitEditing={this.submit}
+                blurOnSubmit={false}
                 value={this.state.question}
+                maxLength={140}
               />
             </Item>
             <Item last>
@@ -63,7 +66,7 @@ class CardCreate extends Component {
                 onChangeText={(text) => this.setState({answer:text})}
                 onSubmitEditing={this.submit}
                 value={this.state.answer}
-                
+                maxLength={140}
               />
             </Item>
             <View style={styles.controls}>

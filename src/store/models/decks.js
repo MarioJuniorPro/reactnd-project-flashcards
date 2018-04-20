@@ -1,12 +1,6 @@
 export const decks = {
   state: {
     table: {
-      ...Array.from(new Array(2)).map((n, i) => ({
-        id: String(i),
-        title: `Deck ${i}`,
-        cardsTotal: 0,
-        cards: []
-      }))
     },
     selected: null
   },

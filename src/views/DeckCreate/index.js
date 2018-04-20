@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import uuid from 'uuid/v4'
+
 import { Text, View } from "react-native";
 import { connect } from "react-redux";
 import { Entypo } from "@expo/vector-icons";
@@ -24,8 +26,9 @@ class DeckCreate extends Component {
   submit = () => {
     const newDeck = {
       title: this.state.title.trim(),
-      id: "fsdfsd",
-      cardsTotal: 0
+      id: uuid(),
+      cardsTotal: 0,
+      cards: []
     };
     this.props.addDeck(newDeck);
     this.setState({ disableSubmit: true });
@@ -51,6 +54,7 @@ class DeckCreate extends Component {
                 onSubmitEditing={this.submit}
                 value={this.state.title}
                 style={general.input}
+                maxLength={15}
               />
             </Item>
 
