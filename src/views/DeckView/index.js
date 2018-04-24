@@ -38,7 +38,7 @@ class DeckView extends Component {
   startQuiz = () => {
     const { deck } = this.props
     this.props.startQuiz({deck})
-    this.props.navigation.dispatch(navigateResetAction("Quiz"));
+    this.props.navigation.dispatch(navigateResetAction({routeName: "Quiz"}));
   };
 
   deleteDeck = () => {

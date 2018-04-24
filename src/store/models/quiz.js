@@ -1,3 +1,4 @@
+import shuffle from 'lodash/shuffle'
 export const quiz = {
   state: {
     deck: {},
@@ -13,7 +14,7 @@ export const quiz = {
         index: 0,
         correctAnswers: 0,
         deck: payload.deck,
-        cards: payload.deck.cards,
+        cards: shuffle(payload.deck.cards),
         size: payload.deck.cards.length
       };
     },

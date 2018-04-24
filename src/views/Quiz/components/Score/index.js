@@ -4,6 +4,8 @@ import { Text, View, Animated } from "react-native";
 import { Fab, Container } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Audio } from "expo";
+import { localNotification } from "utils";
+import { NavigationActions } from "react-navigation";
 
 import { general } from "styles";
 import styles from "./styles";
@@ -42,7 +44,10 @@ class Score extends Component {
       toValue: 1,
       duration: 1000
     }).start();
-    this.props.finished && this.playWinSound();
+    if (this.props.finished) {
+      this.playWinSound();
+      localNotification.refreshLocalNotification();
+    }
   }
 
   componentWillUnmount() {
@@ -68,8 +73,17 @@ class Score extends Component {
 
   toMain = () => {
     const { navigation, retry } = this.props;
-    retry();
-    navigation.replace("Main");
+    retry(); // reset deck stats
+
+    navigation.dispatch(
+      NavigationActions.reset({
+        index: 1,
+        actions: [
+          NavigationActions.navigate({ routeName: "Main" }),
+          NavigationActions.navigate({ routeName: "DeckView" })
+        ]
+      })
+    );
   };
 
   render() {
@@ -85,7 +99,7 @@ class Score extends Component {
             </View>
             <View style={styles.boxControls}>
               <BtnDefault text="Retry" onPress={this.retry} />
-              <BtnDefault text="Back to Main" onPress={this.toMain} />
+              <BtnDefault text="Back to Deck" onPress={this.toMain} />
             </View>
           </View>
         </Animated.View>

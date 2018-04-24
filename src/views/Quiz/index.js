@@ -7,15 +7,11 @@ import Card from "./components/Card";
 import Score from "./components/Score";
 import BtnDefault from "components/BtnDefault";
 import { If, Unless } from "components/util";
-import { localNotification } from "utils";
+
 
 class Quiz extends Component {
   constructor(props) {
     super(props);
-  }
-
-  componentWillMount() {
-    localNotification.refreshLocalNotification();
   }
 
   static navigationOptions = {

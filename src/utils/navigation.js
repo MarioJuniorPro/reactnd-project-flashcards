@@ -1,9 +1,9 @@
 import { NavigationActions } from "react-navigation";
 
-export const navigateResetAction = routeName => {
+export const navigateResetAction = (ops) => {
   const resetAction = NavigationActions.reset({
     index: 0,
-    actions: [NavigationActions.navigate({ routeName })]
+    actions: [NavigationActions.navigate(ops)]
   });
   return resetAction;
 };

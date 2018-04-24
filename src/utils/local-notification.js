@@ -29,17 +29,17 @@ const setLocalNotification = async () => {
     const notification = await notificationStorage.getObject();
     if (notification === null && (await isGranted())) {
       Notifications.cancelAllScheduledNotificationsAsync();
-
+      
       const tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       tomorrow.setHours(14);
       tomorrow.setMinutes(0);
-
+      
       Notifications.scheduleLocalNotificationAsync(createNotification(), {
         time: tomorrow,
         repeat: "day"
       });
-
+      
       notificationStorage.setObject(true);
     }
   } catch (error) {

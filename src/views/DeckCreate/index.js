@@ -31,9 +31,9 @@ class DeckCreate extends Component {
       cards: []
     };
     this.props.addDeck(newDeck);
+    this.props.selectDeck(newDeck.id);
+    this.props.navigation.dispatch(navigateResetAction({routeName: 'DeckView'}));
     this.setState({ disableSubmit: true });
-
-    this.props.navigation.dispatch(navigateResetAction('Main'));
   };
 
   disableSubmit = () => {
@@ -75,8 +75,9 @@ class DeckCreate extends Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = ({ decks: { addDeck } }) => ({
-  addDeck
+const mapDispatchToProps = ({ decks: { addDeck, selectDeck } }) => ({
+  addDeck,
+  selectDeck
 });
 
 export default connect(null, mapDispatchToProps)(DeckCreate);
